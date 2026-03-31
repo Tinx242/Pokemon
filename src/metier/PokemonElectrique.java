@@ -2,40 +2,38 @@ package metier;
 
 public class PokemonElectrique extends Pokemon {
 
-	private TypePokemon type;
-	
-	public PokemonElectrique(String nom ,TypePokemon type, int pv , int puissance , int atk) {
-		super (nom , type , pv , puissance ,atk);
-		this.type = TypePokemon.ELECTRIQUE;
-	}
-	public PokemonElectrique() {}
-	
-	public void Eclair(Pokemon cible) {
-		
-	System.out.println(getnom() + " lance une Eclair");
-	
-	if(cible.getType().equals(type.FEU)) {
-	cible.setpv(cible.getpv()- (15 + getatk()*2));
-	System.out.println(cible.getnom() + " a subit " + getatk() + " de dégats");
-	System.out.println(cible.getnom() + " n'a plus que " + cible.getpv() + " points de vie");
-	}
-	else if (cible.getType().equals(type.PLANTE)) { 
-		cible.setpv(cible.getpv() - (15 + getatk()/2));
-	System.out.println(cible.getnom() + " a subit " + (15 + getatk()/2)+ " de dégats");
-	System.out.println(cible.getnom() + " n'a plus que " + cible.getpv() + " points de vie");
-	}
-	else {cible.setpv(cible.getpv() - (15 + getatk()));
+    public PokemonElectrique(String nom, TypePokemon type, int pv, int puissance, int atk) {
+        super(nom, type, pv, puissance, atk);
+    }
 
-	}
-	int i = 0;
-	if (cible.getpv() <= i) {
+    public PokemonElectrique() {}
 
-	System.out.println(cible.getnom() + " est mort");
+    public void Eclair(Pokemon cible) {
+        System.out.println(getnom() + " lance un Éclair");
 
-		}
-	}
-	
-	
+        int degats;
 
+        if (cible.getType().equals(TypePokemon.FEU)) {
+            degats = 15 + getatk() * 2;
+            cible.setpv(cible.getpv() - degats);
+            System.out.println(cible.getnom() + " a subi " + degats + " dégâts");
+            System.out.println(cible.getnom() + " n'a plus que " + cible.getpv() + " points de vie");
+
+        } else if (cible.getType().equals(TypePokemon.PLANTE)) {
+            degats = 15 + getatk() / 2;
+            cible.setpv(cible.getpv() - degats);
+            System.out.println(cible.getnom() + " a subi " + degats + " dégâts");
+            System.out.println(cible.getnom() + " n'a plus que " + cible.getpv() + " points de vie");
+
+        } else {
+            degats = 15 + getatk();
+            cible.setpv(cible.getpv() - degats);
+            System.out.println(cible.getnom() + " a subi " + degats + " dégâts");
+            System.out.println(cible.getnom() + " n'a plus que " + cible.getpv() + " points de vie");
+        }
+
+        if (cible.getpv() <= 0) {
+            System.out.println(cible.getnom() + " est mort");
+        }
+    }
 }
-

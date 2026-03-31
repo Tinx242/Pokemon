@@ -2,39 +2,38 @@ package metier;
 
 public class PokemonFeu extends Pokemon {
 
-	private TypePokemon type;
+    public PokemonFeu(String nom, TypePokemon type, int pv, int puissance, int atk) {
+        super(nom, type, pv, puissance, atk);
+    }
 
-	public PokemonFeu(String nom ,TypePokemon type, int pv , int puissance , int atk) {
-		super (nom , type , pv , puissance ,atk);
-		this.type = TypePokemon.FEU;
-	}
-	public PokemonFeu() {}
-	
-	public void infernape(Pokemon ennemie) {
-		
-	System.out.println(getnom() + " lance une infernape");
-	
-	if(ennemie.getType().equals(type.PLANTE)) {
-	ennemie.setpv(ennemie.getpv()- (15 + getatk()*2));
-	System.out.println(ennemie.getnom() + " a subit " + getatk() + " de dégats");
-	System.out.println(ennemie.getnom() + " n'a plus que " + ennemie.getpv() + " points de vie");
-	}
-	else if (ennemie.getType().equals(type.EAU)) { 
-	ennemie.setpv(ennemie.getpv() - (15 + getatk()/2));
-	System.out.println(ennemie.getnom() + " a subit " + (15 + getatk()/2)+ " de dégats");
-	System.out.println(ennemie.getnom() + " n'a plus que " + ennemie.getpv() + " points de vie");
-	}
-	else {ennemie.setpv(ennemie.getpv() - (15 + getatk()));
+    public PokemonFeu() {}
 
-	}
-	System.out.println(ennemie.getnom() +" n'a plus que:" + ennemie.getpv() + "HP");
-	int i = 0;
-	if (ennemie.getpv() <= i) {
-	System.out.println(ennemie.getnom() + " est mort");
+    public void infernape(Pokemon ennemi) {
+        System.out.println(getnom() + " lance Infernape");
 
-		}
-	}
-	
-	
+        int degats;
 
+        if (ennemi.getType().equals(TypePokemon.PLANTE)) {
+            degats = 15 + getatk() * 2;
+            ennemi.setpv(ennemi.getpv() - degats);
+            System.out.println(ennemi.getnom() + " a subi " + degats + " dégâts");
+            System.out.println(ennemi.getnom() + " n'a plus que " + ennemi.getpv() + " points de vie");
+
+        } else if (ennemi.getType().equals(TypePokemon.EAU)) {
+            degats = 15 + getatk() / 2;
+            ennemi.setpv(ennemi.getpv() - degats);
+            System.out.println(ennemi.getnom() + " a subi " + degats + " dégâts");
+            System.out.println(ennemi.getnom() + " n'a plus que " + ennemi.getpv() + " points de vie");
+
+        } else {
+            degats = 15 + getatk();
+            ennemi.setpv(ennemi.getpv() - degats);
+            System.out.println(ennemi.getnom() + " a subi " + degats + " dégâts");
+            System.out.println(ennemi.getnom() + " n'a plus que " + ennemi.getpv() + " points de vie");
+        }
+
+        if (ennemi.getpv() <= 0) {
+            System.out.println(ennemi.getnom() + " est mort");
+        }
+    }
 }
